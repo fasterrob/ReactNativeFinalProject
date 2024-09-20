@@ -5,8 +5,6 @@ import CaloriePlanScreen from "./Screens/CaloriePlanScreen";
 import IngredientsCalculatorScreen from "./Screens/IngredientsCalculatorScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from "react-native-vector-icons/Ionicons";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import CustomTabBar from "./components/CustomTabBar";
 
 type RootStackParamList = {
