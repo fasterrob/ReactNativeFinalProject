@@ -8,12 +8,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       <View style={styles.circle} />
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Profile")}
-          >
-            <Image
-              source={require("../assets/Avatar.png")}
-            />
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <Image source={require("../assets/Avatar.png")} />
           </TouchableOpacity>
         </View>
         <View style={styles.logoContainer}>
