@@ -2,10 +2,15 @@ import { View, Text, TextInput, ScrollView, Image } from "react-native";
 import styles from "../styles/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BMI from "../component/BMI";
+import NavBanner from "../components/NavBanner";
 
 const CaloriePlanScreen = () => {
   return (
-    <BMI />
+    <>
+        <NavBanner page="calorie" />
+        <BMI />
+    </>
+
     // <SafeAreaView style={styles.backgroundBMI}>
     //   <ScrollView style={styles.scrollView}>
     //     <View style={{flex:1}}>
