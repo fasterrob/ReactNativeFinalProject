@@ -1,11 +1,21 @@
-import { View, Text } from "react-native";
+import { View, Text, TextInput, ScrollView, Image } from "react-native";
 import styles from "../styles/styles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import BMI from "../component/BMI";
 
 const CaloriePlanScreen = () => {
   return (
-    <View style={styles.screen}>
-      <Text>Calorie Plan Screen</Text>
-    </View>
+    <BMI />
+    // <SafeAreaView style={styles.backgroundBMI}>
+    //   <ScrollView style={styles.scrollView}>
+    //     <View style={{flex:1}}>
+    //       <View style={styles.logoContainerBMI}>
+    //         <Image source={require("../assets/logo.png")} />
+    //       </View>
+    //       <Text style={styles.caloriePlanText}>CALORIE PLAN</Text>
+    //     </View>
+    //   </ScrollView>
+    // </SafeAreaView>
   );
 };
 
