@@ -152,14 +152,6 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 10,
   },
-  scrollView: {
-    flex: 1,
-    // backgroundColor: '#FFFFFF',
-    backgroundColor: 'pink',
-    marginHorizontal: 20,
-    width: '100%',
-    height: '100%',
-  },
   caloriePlanText:{
     marginRight: 30,
     textAlign: 'right',
