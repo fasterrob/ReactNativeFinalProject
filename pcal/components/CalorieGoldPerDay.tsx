@@ -66,7 +66,7 @@ const CalorieGoldPerDay: React.FC = () => {
         const mealLimit = Math.round(dailyLimit / 3);
 
         // For this example, let's assume the user has consumed 500 calories
-        const consumedCalories = 1200;
+        const consumedCalories = 1;
         const remainingCalories = dailyLimit - consumedCalories;
 
         setResults({ dailyLimit, mealLimit, remainingCalories });
