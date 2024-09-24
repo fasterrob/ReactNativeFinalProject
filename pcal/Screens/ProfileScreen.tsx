@@ -1,10 +1,20 @@
 import { View, Text, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import NavBanner from "../components/NavBanner";
 import styles from "../styles/styles";
 import ProfileInfo from "../components/ProfileInfo";
+import PlanModal from "../components/PlanModal";
 
 const ProfileScreen = () => {
+  const [modalVisible, setVisibleModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setVisibleModal(false);
+  };
+
+  const handleOpenModal = () => {
+    setVisibleModal(true);
+  };
   return (
     <>
       <NavBanner page="profile" />
@@ -12,6 +22,7 @@ const ProfileScreen = () => {
         <View style={styles.circleScreen} />
         <ProfileInfo />
         <TouchableOpacity
+          onPress={handleOpenModal}
           style={{
             flexDirection: "column",
             alignItems: "center",
@@ -25,6 +36,8 @@ const ProfileScreen = () => {
           <Text style={{ color: "white" }}>CHECK YOUR PLAN</Text>
         </TouchableOpacity>
       </View>
+
+      <PlanModal isVisible={modalVisible} onClose={handleCloseModal} />
     </>
   );
 };
