@@ -10,6 +10,7 @@ import IngredientsCalculatorScreen from "./Screens/IngredientsCalculatorScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import CustomTabBar from "./components/CustomTabBar";
 import FirstScreen from "./Screens/FIrstScreen";
+import ProgressScreen from "./Screens/ProgressScreen";
 import {
   View,
   Text,
@@ -26,6 +27,7 @@ type RootStackParamList = {
   IngredientsCalculator: undefined;
   HomeScreen: undefined;
   Profile: undefined;
+  Progress: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -112,6 +114,11 @@ function HomeStack() {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Progress"
+        component={ProgressScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

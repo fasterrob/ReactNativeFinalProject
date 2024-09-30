@@ -48,6 +48,22 @@ const NavBanner = ({ page }: PropType): React.JSX.Element => {
           </View>
         </>
       );
+    } else if (page === "progress") {
+      return (
+        <>
+          <View style={{ marginLeft: 40 }}>
+            <Text
+              style={{
+                color: "#2AB793",
+                fontSize: 24,
+                fontWeight: "500",
+              }}
+            >
+              PROGRESS
+            </Text>
+          </View>
+        </>
+      );
     } else {
       return (
         <>
