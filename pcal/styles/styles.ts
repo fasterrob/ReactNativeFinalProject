@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
   logoContainerBMI: {
     marginLeft: 10,
     marginTop: 10,
@@ -157,12 +158,12 @@ const styles = StyleSheet.create({
   },
 
   textBox: {
-    marginTop: 10,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "#dedede",
     height: 40,
     paddingLeft: 10,
+    paddingTop: 10,
   },
 
   scrollView: {
