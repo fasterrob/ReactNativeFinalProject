@@ -4,17 +4,12 @@ import NavBanner from "../components/NavBanner";
 import styles from "../styles/styles";
 import ProfileInfo from "../components/ProfileInfo";
 import PlanModal from "../components/PlanModal";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileScreen = () => {
-  const [modalVisible, setVisibleModal] = useState(false);
 
-  const handleCloseModal = () => {
-    setVisibleModal(false);
-  };
+  const navigation = useNavigation();
 
-  const handleOpenModal = () => {
-    setVisibleModal(true);
-  };
   return (
     <>
       <NavBanner page="profile" />
@@ -22,7 +17,7 @@ const ProfileScreen = () => {
         <View style={styles.circleScreen} />
         <ProfileInfo />
         <TouchableOpacity
-          onPress={handleOpenModal}
+          onPress={() => navigation.navigate("Progress" as never)}
           style={{
             flexDirection: "column",
             alignItems: "center",
@@ -37,7 +32,7 @@ const ProfileScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <PlanModal isVisible={modalVisible} onClose={handleCloseModal} />
+      
     </>
   );
 };
