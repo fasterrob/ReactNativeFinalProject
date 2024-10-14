@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import {
   BarChart,
@@ -9,7 +15,17 @@ import {
 import AddWeight from "../components/AddWeight";
 
 const Progress = () => {
-  const data = [{ value: 50 }, { value: 80 }, { value: 90 }, { value: 70 }];
+  const data = [
+    { value: 50 },
+    { value: 80 },
+    { value: 90 },
+    { value: 70 },
+    { value: 70 },
+    { value: 70 },
+    { value: 70 },
+    { value: 70 },
+    { value: 70 },
+  ];
   const [modalVisible, setVisibleModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -22,8 +38,10 @@ const Progress = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Your Progress</Text> 
-      <LineChart data={data} />
+      <Text style={styles.title}>Your Progress</Text>
+      <ScrollView style={{ width: "100%", flex: 1 }}>
+        <LineChart maxValue={150} data={data} />
+      </ScrollView>
       {/* <BarChart data={data} /> */}
       {/* <PieChart data={data} />
       <PopulationPyramid
