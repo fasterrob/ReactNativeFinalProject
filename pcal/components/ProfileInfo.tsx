@@ -6,15 +6,13 @@ import { removeProfile } from "../store/store"; // Adjust the import path as nee
 import { useNavigation } from "@react-navigation/native";
 import { RootState } from "../store/store";
 
-interface Data {
-  name: string;
-  age: string;
-  height: string;
-  weight: string;
-  gender: string;
+interface ProfileInfoProps {
+  openModalEditProfileVisible: () => void;
 }
 
-const ProfileInfo: React.FC = () => {
+const ProfileInfo: React.FC<ProfileInfoProps> = ({
+  openModalEditProfileVisible,
+}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const profile = useSelector((state: RootState) => state.profile);
@@ -41,44 +39,46 @@ const ProfileInfo: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Profile Information</Text>
-        <TouchableOpacity>
-          <Feather name="edit" size={24} color="#4CAF50" />
+    <>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Profile Information</Text>
+          <TouchableOpacity onPress={openModalEditProfileVisible}>
+            <Feather name="edit" size={24} color="#4CAF50" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Name</Text>
+          <Text>{profile.name}</Text>
+        </View>
+
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Age</Text>
+          <Text>{profile.age}</Text>
+        </View>
+
+        <View style={styles.row}>
+          <View style={[styles.formGroup, styles.halfWidth]}>
+            <Text style={styles.label}>Height</Text>
+            <Text>{profile.height}</Text>
+          </View>
+          <View style={[styles.formGroup, styles.halfWidth]}>
+            <Text style={styles.label}>Weight</Text>
+            <Text>{profile.weight}</Text>
+          </View>
+        </View>
+
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Gender</Text>
+          <Text>{profile.gender}</Text>
+        </View>
+
+        <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+          <Feather name="trash-2" size={24} color="#4CAF50" />
         </TouchableOpacity>
       </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Name</Text>
-        <Text>{profile.name}</Text>
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Age</Text>
-        <Text>{profile.age}</Text>
-      </View>
-
-      <View style={styles.row}>
-        <View style={[styles.formGroup, styles.halfWidth]}>
-          <Text style={styles.label}>Height</Text>
-          <Text>{profile.height}</Text>
-        </View>
-        <View style={[styles.formGroup, styles.halfWidth]}>
-          <Text style={styles.label}>Weight</Text>
-          <Text>{profile.weight}</Text>
-        </View>
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Gender</Text>
-        <Text>{profile.gender}</Text>
-      </View>
-
-      <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
-        <Feather name="trash-2" size={24} color="#4CAF50" />
-      </TouchableOpacity>
-    </View>
+    </>
   );
 };
 

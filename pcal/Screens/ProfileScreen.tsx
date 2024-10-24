@@ -5,17 +5,24 @@ import styles from "../styles/styles";
 import ProfileInfo from "../components/ProfileInfo";
 import PlanModal from "../components/PlanModal";
 import { useNavigation } from "@react-navigation/native";
+import EditProfile from "../components/EditProfile";
 
 const ProfileScreen = () => {
-
   const navigation = useNavigation();
+  const [modalEditProfileVisible, setModalEditProfileVisible] = useState(false);
+
+  const handleOpenModalEditProfileVisible = () => {
+    setModalEditProfileVisible(!modalEditProfileVisible);
+  };
 
   return (
     <>
       <NavBanner page="profile" />
       <View style={styles.backgroundScreen}>
         <View style={styles.circleScreen} />
-        <ProfileInfo />
+        <ProfileInfo
+          openModalEditProfileVisible={handleOpenModalEditProfileVisible}
+        />
         <TouchableOpacity
           onPress={() => navigation.navigate("Progress" as never)}
           style={{
@@ -31,8 +38,13 @@ const ProfileScreen = () => {
           <Text style={{ color: "white" }}>CHECK YOUR PLAN</Text>
         </TouchableOpacity>
       </View>
-
-      
+      <EditProfile
+        modalVisible={modalEditProfileVisible}
+        onSave={() => {}}
+        onClose={() => {
+          setModalEditProfileVisible(false);
+        }}
+      />
     </>
   );
 };

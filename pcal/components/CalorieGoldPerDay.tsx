@@ -1,75 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Svg, { Circle } from "react-native-svg";
+import CircularProgress from "./CircularProgress";
+import {
+  calculateCalorieLimit,
+  type CalorieResults,
+  type ProfileState,
+} from "../utils/calorieUtils";
 
-interface ProfileState {
-  height: string;
-  weight: string;
-  age: string;
-  gender: "male" | "female";
-  activityLevel:
-    | "sedentary"
-    | "lightly active"
-    | "moderately active"
-    | "very active"
-    | "extra active";
-}
-
-interface Results {
-  dailyLimit: number;
-  mealLimit: number;
-  remainingCalories: number;
-}
-
-const CalorieGoldPerDay: React.FC = () => {
-  const [results, setResults] = useState<Results | null>(null);
+const CalorieGoldPerDay: React.FC<{ onUpdate: number }> = ({ onUpdate }) => {
+  const [results, setResults] = useState<CalorieResults | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    calculateCalorieLimits();
-  }, []);
+    loadStoredResults();
+  }, [onUpdate]);
+
+  const loadStoredResults = async () => {
+    try {
+      const storedResults = await AsyncStorage.getItem("calorieResults");
+      if (storedResults) {
+        const storedResultsJSON = JSON.parse(storedResults);
+        if (storedResultsJSON.dailyLimit) {
+          setResults(storedResultsJSON);
+          setLoading(false);
+        } else {
+          calculateCalorieLimits();
+        }
+      }
+    } catch (error) {
+      console.error("Error loading stored results:", error);
+      calculateCalorieLimits();
+    }
+  };
 
   const calculateCalorieLimits = async () => {
     try {
       const profileStateJson = await AsyncStorage.getItem("profileState");
       if (profileStateJson) {
         const profileState: ProfileState = JSON.parse(profileStateJson);
-        const { height, weight, age, gender, activityLevel } = profileState;
+        const newResults = calculateCalorieLimit(profileState);
 
-        const heightCm = parseFloat(height);
-        const weightKg = parseFloat(weight);
-        const ageYears = parseInt(age, 10);
-
-        let bmr: number;
-        if (gender === "male") {
-          bmr =
-            88.362 + 13.397 * weightKg + 4.799 * heightCm - 5.677 * ageYears;
-        } else {
-          bmr = 447.593 + 9.247 * weightKg + 3.098 * heightCm - 4.33 * ageYears;
-        }
-
-        const activityMultipliers: Record<
-          ProfileState["activityLevel"],
-          number
-        > = {
-          sedentary: 1.2,
-          "lightly active": 1.375,
-          "moderately active": 1.55,
-          "very active": 1.725,
-          "extra active": 1.9,
-        };
-
-        const dailyLimit = Math.round(
-          bmr * activityMultipliers["moderately active"]
+        await AsyncStorage.setItem(
+          "calorieResults",
+          JSON.stringify(newResults)
         );
-        const mealLimit = Math.round(dailyLimit / 3);
-
-        // For this example, let's assume the user has consumed 500 calories
-        const consumedCalories = 1;
-        const remainingCalories = dailyLimit - consumedCalories;
-
-        setResults({ dailyLimit, mealLimit, remainingCalories });
+        setResults(newResults);
       } else {
         console.error("Profile state not found in AsyncStorage");
       }
@@ -78,40 +54,6 @@ const CalorieGoldPerDay: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const CircularProgress: React.FC<{ percentage: number }> = ({
-    percentage,
-  }) => {
-    const size = 120;
-    const strokeWidth = 12;
-    const radius = (size - strokeWidth) / 2;
-    const circumference = radius * 2 * Math.PI;
-    const strokeDashoffset = circumference - (percentage / 100) * circumference;
-
-    return (
-      <Svg width={size} height={size}>
-        <Circle
-          stroke="#e6e6e6"
-          fill="none"
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          strokeWidth={strokeWidth}
-        />
-        <Circle
-          stroke="#2AB793"
-          fill="none"
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          strokeWidth={strokeWidth}
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-        />
-      </Svg>
-    );
   };
 
   if (loading) {
@@ -159,6 +101,8 @@ const CalorieGoldPerDay: React.FC = () => {
     </View>
   );
 };
+
+export default CalorieGoldPerDay;
 
 const styles = StyleSheet.create({
   container: {
@@ -232,5 +176,3 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-
-export default CalorieGoldPerDay;

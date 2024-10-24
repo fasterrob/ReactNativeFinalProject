@@ -42,6 +42,7 @@ const persistMiddleware = (store: any) => (next: any) => (action: any) => {
     AsyncStorage.removeItem("profileState").catch((error) =>
       console.error("Error removing state:", error)
     );
+    AsyncStorage.clear();
   } else {
     AsyncStorage.setItem("profileState", JSON.stringify(state.profile)).catch(
       (error) => console.error("Error saving state:", error)
