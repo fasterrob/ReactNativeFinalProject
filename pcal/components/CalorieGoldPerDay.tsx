@@ -19,18 +19,18 @@ const CalorieGoldPerDay: React.FC<{ onUpdate: number }> = ({ onUpdate }) => {
   const loadStoredResults = async () => {
     try {
       const storedResults = await AsyncStorage.getItem("calorieResults");
-      if (storedResults) {
-        const storedResultsJSON = JSON.parse(storedResults);
-        if (storedResultsJSON.dailyLimit) {
-          setResults(storedResultsJSON);
-          setLoading(false);
-        } else {
-          calculateCalorieLimits();
-        }
+
+      const storedResultsJSON = JSON.parse(storedResults);
+      if (storedResultsJSON.dailyLimit) {
+        setResults(storedResultsJSON);
+      } else {
+        calculateCalorieLimits();
       }
     } catch (error) {
       console.error("Error loading stored results:", error);
       calculateCalorieLimits();
+    } finally {
+      setLoading(false);
     }
   };
 

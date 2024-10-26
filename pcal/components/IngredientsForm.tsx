@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 10,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
     color: "#333",
   },
   formContainer: {
@@ -258,11 +258,24 @@ const styles = StyleSheet.create({
   },
   ingredientContainer: {
     marginBottom: 16,
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+
   },
   ingredientName: {
-    fontSize: 16,
+    fontSize: 17,
     marginBottom: 8,
     color: "#333",
+    fontWeight: "bold",
   },
   inputContainer: {
     flexDirection: "row",
@@ -304,7 +317,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 10,
     backgroundColor: "#f0f0f0",
-    borderRadius: 5,
+    borderRadius: 10,
   },
   nutritionTitle: {
     fontSize: 18,

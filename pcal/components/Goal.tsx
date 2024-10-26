@@ -74,7 +74,7 @@ const Goal = () => {
         value={weightGoal}
         onChangeText={handleWeightGoalChange}
       />
-      <Text style={styles.fontBMI}>Duration</Text>
+      <Text style={styles.fontBMI}>Duration (Week)</Text>
       <TextInput
         style={{
           borderWidth: 1,
@@ -83,7 +83,7 @@ const Goal = () => {
           height: 40,
           paddingLeft: 10,
         }}
-        placeholder="Enter Duration"
+        placeholder="Enter duration"
         keyboardType="numeric"
         value={duration}
         onChangeText={handleDurationChange}
