@@ -55,7 +55,7 @@ const EditProfile: React.FC<EditProfileProps> = ({
               <Text style={styles.label}>Name</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Value"
+                placeholder="Enter name"
                 value={name}
                 onChangeText={setName}
               />
@@ -65,7 +65,7 @@ const EditProfile: React.FC<EditProfileProps> = ({
               <Text style={styles.label}>Age</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Value"
+                placeholder="Enter Age"
                 value={age}
                 keyboardType="numeric"
                 onChangeText={setAge}
@@ -76,7 +76,7 @@ const EditProfile: React.FC<EditProfileProps> = ({
               <Text style={styles.label}>Height</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Value"
+                placeholder="Enter Height"
                 value={height}
                 keyboardType="numeric"
                 onChangeText={setHeight}
@@ -87,7 +87,7 @@ const EditProfile: React.FC<EditProfileProps> = ({
               <Text style={styles.label}>Weight</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Value"
+                placeholder="Enter Weight"
                 value={weight}
                 keyboardType="numeric"
                 onChangeText={setWeight}
