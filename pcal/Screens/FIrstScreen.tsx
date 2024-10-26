@@ -64,7 +64,7 @@ const FirstScreen: React.FC = () => {
           <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
-            placeholder="Value"
+            placeholder="Enter Name"
             value={name}
             onChangeText={setName}
           />
@@ -74,7 +74,7 @@ const FirstScreen: React.FC = () => {
           <Text style={styles.label}>Age</Text>
           <TextInput
             style={styles.input}
-            placeholder="Value"
+            placeholder="Enter Age"
             value={age}
             onChangeText={setAge}
             keyboardType="numeric"
@@ -85,7 +85,7 @@ const FirstScreen: React.FC = () => {
           <Text style={styles.label}>Height</Text>
           <TextInput
             style={styles.input}
-            placeholder="Value"
+            placeholder="Enter Height"
             value={height}
             onChangeText={setHeight}
             keyboardType="numeric"
@@ -96,7 +96,7 @@ const FirstScreen: React.FC = () => {
           <Text style={styles.label}>Weight</Text>
           <TextInput
             style={styles.input}
-            placeholder="Value"
+            placeholder="Enter Weight"
             value={weight}
             onChangeText={setWeight}
             keyboardType="numeric"
